@@ -1,0 +1,15 @@
+{
+  "schema": "qsolai.task/v1",
+  "task_id": "creative-variation",
+  "task_class": "creative_generation",
+  "goal": "Produce a short original mechanical refrain.",
+  "risk_tier": "LOW",
+  "determinism_mode": "EXPLORATORY",
+  "execution_profile": "SIM_ONLY",
+  "constraints": [],
+  "evidence_requirements": [],
+  "forbidden_actions": [],
+  "mutation_index": 8,
+  "run_nonce": "creative-mutation-8",
+  "history_catalogue": ["dca0c5e14b0e649c876f89af1ef13b48f5f6fb21d25f64dbef7cb2c5b92668a3"]
+}

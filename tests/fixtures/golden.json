@@ -1,0 +1,7 @@
+{
+  "schema": "qsolai.test-golden/v1",
+  "canonical_json": "{\"a\":[3,2,1],\"z\":{\"b\":true,\"n\":null}}",
+  "canonical_sha256": "9e9230fe5b86c68ad417cbe0352b6b116e185e8ee4e00c9042f5d0e07f773c24",
+  "domain_sha256": "9bc7f89eb83d15215cf408464e9af8d0d07bf163a8d1ce48521f80d973609615",
+  "implementation_source_bundle_sha256": "6f20c2bd5670cf2626987138760fba6c0bd445f2d4efb7848c236d3c19216cdc"
+}

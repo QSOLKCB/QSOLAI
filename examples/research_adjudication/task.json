@@ -1,0 +1,33 @@
+{
+  "schema": "qsolai.task/v1",
+  "task_id": "research-adjudication",
+  "task_class": "research_synthesis",
+  "goal": "Summarize the bounded synthetic result without exceeding the declared evidence.",
+  "risk_tier": "MEDIUM",
+  "determinism_mode": "CAPTURED_LIVE",
+  "execution_profile": "SIM_ONLY",
+  "constraints": [
+    {
+      "schema": "qsolai.constraint/v1",
+      "constraint_id": "bounded-language",
+      "kind": "REQUIRED",
+      "terms": ["synthetic"],
+      "case_sensitive": false
+    }
+  ],
+  "evidence_requirements": [
+    {
+      "schema": "qsolai.evidence-requirement/v1",
+      "requirement_id": "synthetic-study",
+      "description": "Invented record used only to exercise evidence-bound adjudication.",
+      "required": true,
+      "record_ids": ["paper-A"],
+      "source_date": "2026-07-01",
+      "jurisdiction": null
+    }
+  ],
+  "forbidden_actions": ["publish research claim"],
+  "mutation_index": 0,
+  "run_nonce": "research-example-v1",
+  "history_catalogue": []
+}

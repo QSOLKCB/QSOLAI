@@ -1,0 +1,30 @@
+{
+  "schema": "qsolai.task/v1",
+  "task_id": "c99-win32-constraint",
+  "task_class": "implementation",
+  "goal": "Design a native C99 and Win32 API application without browser or external runtime technology.",
+  "risk_tier": "LOW",
+  "determinism_mode": "CAPTURED_LIVE",
+  "execution_profile": "SIM_ONLY",
+  "constraints": [
+    {
+      "schema": "qsolai.constraint/v1",
+      "constraint_id": "native-c99-win32",
+      "kind": "REQUIRED",
+      "terms": ["C99", "Win32 API"],
+      "case_sensitive": false
+    },
+    {
+      "schema": "qsolai.constraint/v1",
+      "constraint_id": "no-browser-stack",
+      "kind": "FORBIDDEN",
+      "terms": ["HTML", "CSS", "JavaScript", "WebAssembly", "Electron", "SDL", "external runtime"],
+      "case_sensitive": false
+    }
+  ],
+  "evidence_requirements": [],
+  "forbidden_actions": ["execute generated program", "modify external system"],
+  "mutation_index": 0,
+  "run_nonce": "c99-win32-v1",
+  "history_catalogue": []
+}
