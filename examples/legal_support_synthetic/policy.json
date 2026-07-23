@@ -1,0 +1,100 @@
+{
+  "schema": "qsolai.policy/v1",
+  "policy_id": "legal-support-synthetic-policy",
+  "execution_profile": "SIM_ONLY",
+  "support_profile": "LEGAL_SUPPORT",
+  "human_approval_required": true,
+  "required_independent_backends": 2,
+  "max_observation_bytes": 65536,
+  "worker_timeout_ms": 2000,
+  "capability_grants": [
+    {
+      "schema": "qsolai.capability-grant/v1",
+      "grant_id": "mock-only",
+      "execution_profile": "SIM_ONLY",
+      "allowed_adapters": ["MOCK"],
+      "allow_subprocess": false,
+      "argv": [],
+      "environment": {}
+    }
+  ],
+  "agents": [
+    {
+      "schema": "qsolai.agent/v1",
+      "agent_id": "legal-support-a",
+      "backend_id": "synthetic-legal-backend-a",
+      "adapter": "MOCK",
+      "roles": ["SUBSTRATE", "GENERATOR", "CRITIC", "ADVERSARY", "CONSTRAINT_AUDITOR", "SYNTHESIS_CANDIDATE"],
+      "capability_grant_id": "mock-only",
+      "mock_response": {
+        "protocol": "qsolai.worker-result/v1",
+        "summary": "Synthetic permissive legal view",
+        "claims": [
+          {
+            "schema": "qsolai.claim/v1",
+            "claim_id": "fictional-view-a",
+            "text": "The invented Section 7 permits the hypothetical filing.",
+            "polarity": "SUPPORT",
+            "evidence_references": [
+              {
+                "schema": "qsolai.evidence-reference/v1",
+                "requirement_id": "fictionalia-authority",
+                "record_id": "fictionalia-statute-7",
+                "source_date": "2099-01-01",
+                "jurisdiction": "Fictionalia-X"
+              }
+            ]
+          }
+        ],
+        "uncertainties": ["The authority and jurisdiction are entirely invented."],
+        "constraint_report": {"satisfied": ["legal-disclaimer"], "possibly_violated": []},
+        "proposed_actions": [],
+        "answer": "This is not legal advice. Under the invented Fictionalia-X authority, one synthetic reading permits the hypothetical filing, subject to human review."
+      }
+    },
+    {
+      "schema": "qsolai.agent/v1",
+      "agent_id": "legal-support-b",
+      "backend_id": "synthetic-legal-backend-b",
+      "adapter": "MOCK",
+      "roles": ["SUBSTRATE", "GENERATOR", "CRITIC", "ADVERSARY", "CONSTRAINT_AUDITOR", "SYNTHESIS_CANDIDATE"],
+      "capability_grant_id": "mock-only",
+      "mock_response": {
+        "protocol": "qsolai.worker-result/v1",
+        "summary": "Synthetic restrictive legal view",
+        "claims": [
+          {
+            "schema": "qsolai.claim/v1",
+            "claim_id": "fictional-view-b",
+            "text": "The invented Section 7 permits the hypothetical filing.",
+            "polarity": "DENY",
+            "evidence_references": [
+              {
+                "schema": "qsolai.evidence-reference/v1",
+                "requirement_id": "fictionalia-authority",
+                "record_id": "fictionalia-statute-7",
+                "source_date": "2099-01-01",
+                "jurisdiction": "Fictionalia-X"
+              }
+            ]
+          }
+        ],
+        "uncertainties": ["The invented text admits competing interpretations."],
+        "constraint_report": {"satisfied": ["legal-disclaimer"], "possibly_violated": []},
+        "proposed_actions": [],
+        "answer": "This is not legal advice. A competing synthetic reading of Fictionalia-X denies permission, so the disagreement remains for a human reviewer."
+      }
+    }
+  ],
+  "style": {
+    "schema": "qsolai.style/v1",
+    "required_phrases": ["not legal advice"],
+    "forbidden_phrases": [],
+    "max_output_bytes": 32768,
+    "max_repeated_line_count": 2
+  },
+  "forbidden_authority_phrases": ["legally guaranteed", "binding legal conclusion"],
+  "anti_repetition_enabled": false,
+  "maximum_attempts": 16,
+  "ranking": ["required_constraint_passes", "evidence_supported_claims", "deterministic_verifier_passes", "unsupported_claim_count", "contradiction_count", "risk_flag_count", "style_violation_count", "excess_output_bytes", "candidate_sha256"]
+}

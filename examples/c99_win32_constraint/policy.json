@@ -1,0 +1,68 @@
+{
+  "schema": "qsolai.policy/v1",
+  "policy_id": "c99-win32-policy",
+  "execution_profile": "SIM_ONLY",
+  "support_profile": "NONE",
+  "human_approval_required": false,
+  "required_independent_backends": 1,
+  "max_observation_bytes": 65536,
+  "worker_timeout_ms": 2000,
+  "capability_grants": [
+    {
+      "schema": "qsolai.capability-grant/v1",
+      "grant_id": "mock-only",
+      "execution_profile": "SIM_ONLY",
+      "allowed_adapters": ["MOCK"],
+      "allow_subprocess": false,
+      "argv": [],
+      "environment": {}
+    }
+  ],
+  "agents": [
+    {
+      "schema": "qsolai.agent/v1",
+      "agent_id": "native-proposer",
+      "backend_id": "synthetic-native-backend",
+      "adapter": "MOCK",
+      "roles": ["SUBSTRATE", "GENERATOR", "CRITIC", "ADVERSARY", "CONSTRAINT_AUDITOR", "SYNTHESIS_CANDIDATE"],
+      "capability_grant_id": "mock-only",
+      "mock_response": {
+        "protocol": "qsolai.worker-result/v1",
+        "summary": "Native constrained proposal",
+        "claims": [],
+        "uncertainties": [],
+        "constraint_report": {"satisfied": ["native-c99-win32", "no-browser-stack"], "possibly_violated": []},
+        "proposed_actions": [],
+        "answer": "Implement the vertical slice in C99 with the Win32 API, a fixed-timestep simulation, compact embedded resources, and no additional runtime dependency."
+      }
+    },
+    {
+      "schema": "qsolai.agent/v1",
+      "agent_id": "browser-proposer",
+      "backend_id": "synthetic-browser-backend",
+      "adapter": "MOCK",
+      "roles": ["SUBSTRATE", "GENERATOR", "CRITIC", "ADVERSARY", "CONSTRAINT_AUDITOR", "SYNTHESIS_CANDIDATE"],
+      "capability_grant_id": "mock-only",
+      "mock_response": {
+        "protocol": "qsolai.worker-result/v1",
+        "summary": "Deliberately invalid browser proposal",
+        "claims": [],
+        "uncertainties": [],
+        "constraint_report": {"satisfied": [], "possibly_violated": ["native-c99-win32", "no-browser-stack"]},
+        "proposed_actions": [],
+        "answer": "Replace the requested native program with an HTML, CSS and JavaScript application packaged in Electron."
+      }
+    }
+  ],
+  "style": {
+    "schema": "qsolai.style/v1",
+    "required_phrases": [],
+    "forbidden_phrases": [],
+    "max_output_bytes": 32768,
+    "max_repeated_line_count": 2
+  },
+  "forbidden_authority_phrases": [],
+  "anti_repetition_enabled": false,
+  "maximum_attempts": 16,
+  "ranking": ["required_constraint_passes", "evidence_supported_claims", "deterministic_verifier_passes", "unsupported_claim_count", "contradiction_count", "risk_flag_count", "style_violation_count", "excess_output_bytes", "candidate_sha256"]
+}

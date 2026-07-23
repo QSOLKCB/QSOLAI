@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use QSOLAI, please cite this software."
+title: "QSOLAI v0.1.0: Deterministic Orchestration Kernel for Bounded Agent Systems"
+type: software
+version: 0.1.0
+date-released: 2026-07-23
+authors:
+  - family-names: Slade
+    given-names: Trent
+repository-code: "https://github.com/QSOLKCB/QSOLAI"
+url: "https://github.com/QSOLKCB/QSOLAI"
+license: MPL-2.0
+keywords:
+  - deterministic orchestration
+  - agent systems
+  - exact replay
+  - canonical JSON
+  - bounded AI

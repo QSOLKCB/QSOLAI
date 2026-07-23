@@ -1,0 +1,33 @@
+{
+  "schema": "qsolai.task/v1",
+  "task_id": "legal-support-synthetic",
+  "task_class": "decision_support",
+  "goal": "Produce bounded legal decision support using only invented authorities and facts.",
+  "risk_tier": "HIGH",
+  "determinism_mode": "CAPTURED_LIVE",
+  "execution_profile": "SIM_ONLY",
+  "constraints": [
+    {
+      "schema": "qsolai.constraint/v1",
+      "constraint_id": "legal-disclaimer",
+      "kind": "REQUIRED",
+      "terms": ["not legal advice"],
+      "case_sensitive": false
+    }
+  ],
+  "evidence_requirements": [
+    {
+      "schema": "qsolai.evidence-requirement/v1",
+      "requirement_id": "fictionalia-authority",
+      "description": "Invented Section 7 of the fictional Filing Act.",
+      "required": true,
+      "record_ids": ["fictionalia-statute-7"],
+      "source_date": "2099-01-01",
+      "jurisdiction": "Fictionalia-X"
+    }
+  ],
+  "forbidden_actions": ["file legal document", "contact court", "give final legal advice"],
+  "mutation_index": 0,
+  "run_nonce": "legal-synthetic-v1",
+  "history_catalogue": []
+}
